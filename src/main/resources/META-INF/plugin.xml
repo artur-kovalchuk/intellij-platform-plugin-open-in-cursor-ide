@@ -1,15 +1,19 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.arturkovalchuk.intellijplatformpluginopenincursor</id>
-    <name>intellij-platform-plugin-open-in-cursor</name>
+    <name>Open in Cursor</name>
     <vendor>artur-kovalchuk</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.OpenInCursorBundle</resource-bundle>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.arturkovalchuk.intellijplatformpluginopenincursor.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.arturkovalchuk.intellijplatformpluginopenincursor.startup.MyProjectActivity" />
-    </extensions>
+    <actions>
+        <action id="OpenInCursor.OpenFile"
+                class="com.github.arturkovalchuk.intellijplatformpluginopenincursor.actions.OpenInCursorAction"
+                text="Cursor"
+                description="Open the selected file or folder in Cursor IDE">
+            <add-to-group group-id="RevealGroup" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

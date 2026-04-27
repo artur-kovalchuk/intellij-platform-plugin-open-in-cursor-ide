@@ -1,51 +1,50 @@
-# intellij-platform-plugin-open-in-cursor
+# Open in Cursor
 
 ![Build](https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [group](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml), [name](./src/main/resources/META-INF/plugin.xml), and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
-
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+Open the current file (or any file/folder from the Project view) directly in [Cursor IDE](https://cursor.com).
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+The action is added to IDEA's standard **Open In** submenu (`RevealGroup`), so it appears wherever IDEA already shows "Reveal in Finder":
+- editor right-click → **Open In → Cursor** (uses the caret line),
+- editor tab right-click → **Open In → Cursor**,
+- Project view right-click → **Open In → Cursor** (also works on folders),
+- navigation bar popup → **Open In → Cursor**.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+It builds a `cursor://file<absolute-path>[:line]` URL — the same scheme Cursor inherits from VS Code — and hands it to the OS protocol handler. No configuration required: the IDE already knows the project root, file path, and caret line.
+
+To make sure the file lands in the right Cursor window (and not whichever window Cursor focused last), the action fires the project folder URL first and then the file URL ~350 ms later. Combined with Cursor's `"window.openFoldersInNewWindow": "on"` setting, this opens a new Cursor window per project without disturbing the previously focused one.
 <!-- Plugin description end -->
+
+## Examples
+
+| Where you click          | URL fired                                                                |
+|--------------------------|--------------------------------------------------------------------------|
+| Editor at line 60        | `cursor://file/Users/me/proj/README.md:60` (after `cursor://file/Users/me/proj`) |
+| Editor tab               | `cursor://file/Users/me/proj/README.md` (after the project URL)          |
+| Project view → file      | `cursor://file/Users/me/proj/src/Main.kt` (after the project URL)        |
+| Project view → folder    | `cursor://file/Users/me/proj/src` (single fire, no chaining)             |
+
+## Tips
+
+- For each click to land in a fresh Cursor window without touching the previous one, set in Cursor: `Cmd+,` → search `openFoldersInNewWindow` → set **Window: Open Folders In New Window** to `on` (or `"window.openFoldersInNewWindow": "on"` in `settings.json`). Keep `window.openFilesInNewWindow` at `default` so the second leg of the chain reuses the freshly-opened window instead of spawning another empty one.
+- Cursor must be installed and registered as the `cursor://` protocol handler. On macOS this happens automatically the first time Cursor runs.
 
 ## Installation
 
 - Using the IDE built-in plugin system:
 
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "intellij-platform-plugin-open-in-cursor"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Open in Cursor"</kbd> >
   <kbd>Install</kbd>
-
-- Using JetBrains Marketplace:
-
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
-
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
 
   Download the [latest release](https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation

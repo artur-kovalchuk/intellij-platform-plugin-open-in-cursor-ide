@@ -1,8 +1,8 @@
 # Open in Cursor IDE
 
 ![Build](https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/31482-open-in-cursor-ide.svg)](https://plugins.jetbrains.com/plugin/31482-open-in-cursor-ide)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/31482-open-in-cursor-ide.svg)](https://plugins.jetbrains.com/plugin/31482-open-in-cursor-ide)
 
 <!-- Plugin description -->
 Open the current file (or any file/folder from the Project view) directly in [Cursor IDE](https://cursor.com).

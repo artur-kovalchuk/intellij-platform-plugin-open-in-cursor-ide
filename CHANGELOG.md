@@ -1,12 +1,14 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
 # intellij-platform-plugin-open-in-cursor Changelog
-# Open in Cursor Changelog
 
 ## [Unreleased]
+
+## [0.0.6] - 2026-04-27
+
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
-- `Cursor` action added under IDEA's standard **Open In** submenu (`RevealGroup`) — appears in the editor popup, editor tab popup, project view popup, and navigation-bar popup alongside "Reveal in Finder".
-- Chained `cursor://` launch: project folder URL is fired first, then the file URL ~350 ms later, so the file lands in the correct Cursor window.
-- Folder targets (project root, sub-directories) open via a single project URL with no line number.
+
 - Cursor logo icon (16×16 with transparent background, plus `@2x` HiDPI variant) shown next to the `Cursor` action item.
+
+[Unreleased]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/0.0.6...HEAD
+[0.0.6]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/commits/0.0.6

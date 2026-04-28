@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "2.1.20"
@@ -47,7 +49,7 @@ intellijPlatform {
             }
         }
 
-        val changelog = project.changelog // local variable for configuration cache compatibility
+        val changelog = project.changelog
         // Get the latest available change notes from the changelog file
         changeNotes = version.map { pluginVersion ->
             with(changelog) {
@@ -57,6 +59,17 @@ intellijPlatform {
                         .withEmptySections(false),
                     Changelog.OutputType.HTML,
                 )
+            }
+        }
+    }
+
+    pluginVerification {
+        ides {
+            select {
+                types = listOf(IntelliJPlatformType.IntellijIdeaCommunity)
+                channels = listOf(ProductRelease.Channel.RELEASE)
+                sinceBuild = "243"
+                untilBuild = "261.*"
             }
         }
     }

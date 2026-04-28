@@ -13,7 +13,7 @@
                 class="com.github.arturkovalchuk.intellijplatformpluginopenincursor.actions.OpenInCursorAction"
                 text="Cursor"
                 description="Open the selected file or folder in Cursor IDE"
-                icon="/icons/cursor.png">
+                icon="/icons/cursor.svg">
             <add-to-group group-id="RevealGroup" anchor="last"/>
         </action>
     </actions>

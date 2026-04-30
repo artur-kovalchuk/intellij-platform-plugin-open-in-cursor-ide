@@ -49,6 +49,6 @@ object CursorLauncher {
 
     private fun launch(url: String) {
         LOG.info("Launching $url via BrowserUtil.browse")
-        BrowserUtil.browse(url)
+        BrowserUtil.open(url)
     }
 }

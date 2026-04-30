@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-04-30
+
 Replace manual os.name detection + Runtime.exec("open"/"rundll32"/
 "xdg-open") with com.intellij.ide.BrowserUtil.browse(), the platform
 API for protocol-handler dispatch.
@@ -36,7 +38,8 @@ standard notification instead of just a log line.
 - Folder targets (project root, sub-directories) open via a single project URL with no line number.
 - Cursor logo icon (16×16 with transparent background, plus `@2x` HiDPI variant) shown next to the `Cursor` action item.
 
-[Unreleased]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.2...HEAD
+[Unreleased]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.3...HEAD
+[1.0.3]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/0.6.0...1.0.1
 [0.6.0]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/commits/0.6.0

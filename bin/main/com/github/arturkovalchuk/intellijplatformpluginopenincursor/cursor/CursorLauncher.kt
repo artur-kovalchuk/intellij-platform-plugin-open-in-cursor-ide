@@ -1,11 +1,12 @@
 package com.github.arturkovalchuk.intellijplatformpluginopenincursor.cursor
 
+import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.util.concurrency.AppExecutorUtil
 import java.util.concurrent.TimeUnit
 
 /**
- * Hands `cursor://` URLs to the OS protocol handler.
+ * Hands `cursor://` URLs to the OS protocol handler via [BrowserUtil.browse].
  *
  * For per-file launches we fire the project folder URL first, then the file URL ~350 ms later.
  * Cursor inherits VS Code's URL service which has no `?newWindow=true` parameter and always
@@ -47,17 +48,7 @@ object CursorLauncher {
     }
 
     private fun launch(url: String) {
-        val os = System.getProperty("os.name").lowercase()
-        val command = when {
-            os.contains("mac") -> arrayOf("open", url)
-            os.contains("win") -> arrayOf("rundll32", "url.dll,FileProtocolHandler", url)
-            else -> arrayOf("xdg-open", url)
-        }
-        LOG.info("Launching $url via os=$os, command=${command.joinToString(" ")}")
-        try {
-            Runtime.getRuntime().exec(command)
-        } catch (e: Exception) {
-            LOG.warn("Failed to launch $url", e)
-        }
+        LOG.info("Launching $url via BrowserUtil.browse")
+        BrowserUtil.browse(url)
     }
 }

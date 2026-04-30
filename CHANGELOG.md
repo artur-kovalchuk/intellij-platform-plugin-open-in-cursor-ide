@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-04-30
+
 fix: bug on macOS - replace BrowserUtil.browse(url) with BrowserUtil.open(url)
 
 ## [1.0.3] - 2026-04-30
@@ -40,7 +42,8 @@ standard notification instead of just a log line.
 - Folder targets (project root, sub-directories) open via a single project URL with no line number.
 - Cursor logo icon (16×16 with transparent background, plus `@2x` HiDPI variant) shown next to the `Cursor` action item.
 
-[Unreleased]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/artur-kovalchuk/intellij-platform-plugin-open-in-cursor/compare/0.6.0...1.0.1

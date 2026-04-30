@@ -36,7 +36,7 @@ To make sure the file lands in the right Cursor window (and not whichever window
 
 - Using the IDE built-in plugin system:
 
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Open in Cursor"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Open in Cursor IDE"</kbd> >
   <kbd>Install</kbd>
 
 - Manually:

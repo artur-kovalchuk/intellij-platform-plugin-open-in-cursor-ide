@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+Replace manual os.name detection + Runtime.exec("open"/"rundll32"/
+"xdg-open") with com.intellij.ide.BrowserUtil.browse(), the platform
+API for protocol-handler dispatch.
+
+Fixes silent failures on environments where the hardcoded fallback
+binary is missing or restricted (Linux distros without xdg-open,
+sandboxed/locked-down Windows), and surfaces failures via IntelliJ's
+standard notification instead of just a log line.
+
 ## [1.0.2] - 2026-04-28
 
 ### Changed
